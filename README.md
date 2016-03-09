@@ -1,4 +1,4 @@
-# EUROBOT---Cuvari_plaze
-Ovde se nalaze svi fajlovi korisceni od strane tima Cuvari plaze za EUROBOT takmicenje.
+# Čuvari-plaže
+Ovde se nalaze svi fajlovi korišćeni od strane tima Čuvari plaže za EUROBOT takmičenje.
 
 U folderu eurobot_lib se nalaze pomocne funkcije.
