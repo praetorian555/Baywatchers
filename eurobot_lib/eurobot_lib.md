@@ -1,5 +1,5 @@
-EUROBOT_Init.c/h sadrzi funkcije za inicijalizaciju periferija.
+EUROBOT_Init.c/h sadrži funkcije za inicijalizaciju periferija.
 
-EUROBOT_Communication.c/h sadrzi funkcije za komunikaciju.
+EUROBOT_Communication.c/h sadrži funkcije za komunikaciju.
 
-EUROBOT_Movement sadrzi.c/h funkcije koriscene za implementaciju kretanja robota.
+EUROBOT_Movement.c/h sadrži funkcije korišćene za implementaciju kretanja robota.
