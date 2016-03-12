@@ -164,6 +164,9 @@ void InitTIM_TimeBase(TIM_TypeDef *TIMx, uint16_t prescaler, uint16_t period, ui
   TIM_TimeBaseInitStructure.TIM_RepetitionCounter = repetition_counter;
   
   TIM_TimeBaseInit( TIMx, &TIM_TimeBaseInitStructure);
+  
+  // Pokretanje tajmera.
+  TIM_Cmd(TIMx, ENABLE);
 
 }
 
