@@ -288,7 +288,7 @@ void InitTIM_IC(TIM_TypeDef *TIMx, uint16_t channel, uint16_t selection, uint16_
     TIM_ICInitStructure.TIM_ICPolarity = polarity;
 	
     
-    TIM_ICInit(TIM1, &TIM_ICInitStructure );
+    TIM_ICInit(TIMx, &TIM_ICInitStructure );
     // Startovanje tajmera.
     TIM_Cmd( TIMx, ENABLE );
 }
