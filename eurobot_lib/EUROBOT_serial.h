@@ -1,76 +1,72 @@
 /**
 *	@file: 	  EUROBOT_serial.c
-*	@author:  Jovan Blanusa, Vitez21 (koprivica.slobodan92@gmail.com) starije verzije
-*	@version: ?
+*	@author:  Jovan Blanusa (jovan.blanusa@gmail.com)
+*	@version: v1.02.230116.0344 
 *	@date: 	  23.1.2016
 *	@brief:	  API funkcije koje olaksavaju komunikaciju pojedinih STM-ova u
 *                 robotu. Ideja je da korisnik ovih funkcija ne misli o formatu
 *                 poruke i eventualnim greskama do kojih bi moglo doci prilikom
-*                 slanja poruke.
+*                 slanja poruke. Da bi ispravno radila biblioteka potrebno je 
+*                 definisati funkciju DecodeCommand() koja se obavlja u prekidnoj 
+*                 rutini posto se primi cela poruka.
 */
 
 /* Potrebno jos uraditi:
-      - Utvrditi kad se tacno salje ACK i na koju adresu i ubaciti to u kod
+      - Resiti problem integriteta poruke. Ako se zaredom salju dve poruke pomocu SendMessage
+            da ne moze druga poruka da prebrise prvu, nego da se obe posalju.
 
-      - Sta se desava kad je pristigla nevalidna poruka, tj kad check sume ne 
-            odgovaraju ili kad je pristigao start bajt pre kraja trenutne poruke?
-
+      - Dodeliti adrese uredjajima, potom ispitati nacin dekodovanja komande i slanje ACK    
+         
       - Poruka se trenutno salje kao string, pa samim tim ne sme ni jedan bajt biti
             0, da li ce ovo smetati ili je potrebno napraviti novi nacin slanja 
             poruke?
 
-      - Proveriti sa ostatkom tima da li je potrebno da se realizuju jos neke API
-            funkcije, i da li ove odgovaraju potrebama.
+      - Dodati da ako je uredjaj SLAVE, da automatski odredjuje adresu, dok master mora
+            da unosi adresu stalno
 
-      - Napisati dokument koji detaljnije objasnjava protokol slanja poruka, pogotovo
-            SendMessage i ExtractMessage jer se vrsi modifikacija bajtova poruke
-            tako da se ne desi da neki bajt ima vrednost start bajta, pa da samim
-            tim ne dodje do greske u komunikaciji.
+      - Napisati dokument koji detaljnije objasnjava protokol slanja poruka i koja 
+            objasnjava kako koja funkcija radi
                     
-      - Videti sa timom da se funkcije DecodeCommand, ExecuteCommand i SendPosition
-            iz EUROBOT_Communication fajlova koji predstavlja stariju verziju ove
-            biblioteke izmeste na odgovarajuca mesta i promene da bi odgovarale 
-            trenutnom API-ju za komunikaciju(Potrebno je samo da se SendPosition
-            izmeni, tj da se implementira koriscenjem SendMessage jer je laksa za
-            koriscenje)
 */
+
 #ifndef __EUROBOT_SERIAL_H__
 #define __EUROBOT_SERIAL_H__
 
 #include "stm32f10x.h"
 #include "stm32f10x_conf.h"
 
+// Definise se koji se kanal koristi za komunikaciju
+#define RS485 USART3
+
+// Adresa mastera na magistrali
+#define MASTER_ADDR 0xBB
+
+//Adresa ovog uredjaja
+#define THIS_ADDR 0xAA
+
+#define SLAVE //MASTER
 /******************************************************************************/
 /************************** API funkcije **************************************/
 /******************************************************************************/
 
 // Slanje poruke
-void SendMessage(unsigned char address, unsigned char* message, unsigned int usartNo);
+void SendMessage(unsigned char address, unsigned char* message);
 // Dohvatanje poslednje validne poruke
-char* GetMessage(unsigned int usartNo);
+char* GetMessage();
 // Dohvatanje adrese posledenje validne poruke
-char GetAddress(unsigned int usartNo);
+char GetAddress();
 // Slanje ACK signala kao odgovor da je poruka primljena
-void SendACK(unsigned char address, unsigned int usartNo);
+void SendACK(unsigned char address);
+// Iniciranje RS485 komunikacije
+void initEurobotRS485(uint32_t BaudRate, uint8_t master_addr, uint8_t this_addr, int is_master);
+// Pocetak RS485 komunikacije
+void EnableRS485();
+// Kraj RS485 komunikacije
+void DisableRS485();
+
 
 /******************************************************************************/
 /******************************************************************************/
-
-//Interna funkcija koja se poziva u prekidnoj rutini za odgovarajuci kanal.
-void usart_interrupt(unsigned int IRQNo);
-
-// Korisnik treba da pozove sledeci makro da bi se definisala potrebna prekidna rutina
-
-/**
-*   @brief: Makro za definisanje prekidne rutine potrebne za USART komunikaciju
-*   @param: Broj USART kanala za koji se definise prekidna rutina
-*   @return: Nema povratnu vrednost
-*
-*/
-#define PREPARE_USART(no)          \
-    void  USART##no##_IRQHandler(void){  \
- 	usart_interrupt(no);  \
-    }
 
 // Korisnik treba da definise sledecu funkciju da bi odredio sta program radi po
 // pristizanju poruke
@@ -81,7 +77,7 @@ void usart_interrupt(unsigned int IRQNo);
 *   @return: Nema povratnu vrednost
 *
 */    
-void DecodeCommand(unsigned int IRQNo);
+void DecodeCommand();
 
 
 #endif
