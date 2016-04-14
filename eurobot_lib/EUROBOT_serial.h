@@ -1,8 +1,8 @@
 /**
 *	@file: 	  EUROBOT_serial.c
 *	@author:  Jovan Blanusa (jovan.blanusa@gmail.com)
-*	@version: v1.02.230116.0344 
-*	@date: 	  23.1.2016
+*	@version: v1.03.140416.1033 
+*	@date: 	  14.4.2016
 *	@brief:	  API funkcije koje olaksavaju komunikaciju pojedinih STM-ova u
 *                 robotu. Ideja je da korisnik ovih funkcija ne misli o formatu
 *                 poruke i eventualnim greskama do kojih bi moglo doci prilikom
@@ -11,21 +11,20 @@
 *                 rutini posto se primi cela poruka.
 */
 
-/* Potrebno jos uraditi:
-      - Resiti problem integriteta poruke. Ako se zaredom salju dve poruke pomocu SendMessage
-            da ne moze druga poruka da prebrise prvu, nego da se obe posalju.
+/* Proveriti:
 
-      - Dodeliti adrese uredjajima, potom ispitati nacin dekodovanja komande i slanje ACK    
-         
-      - Poruka se trenutno salje kao string, pa samim tim ne sme ni jedan bajt biti
-            0, da li ce ovo smetati ili je potrebno napraviti novi nacin slanja 
-            poruke?
+      - Nacin slanja ACK signala. Stavljeno je da samo SLAVE podesi ACK, po potrebi
+            izmeniti to. ACK se salje u funkciji ProcessByte, case: CHECK
 
-      - Dodati da ako je uredjaj SLAVE, da automatski odredjuje adresu, dok master mora
-            da unosi adresu stalno
+      - Adrese su nasumicne, potrebno je definisati adrese, i iskoristiti funkcije
+            date u API-ju za komunikaciju
 
-      - Napisati dokument koji detaljnije objasnjava protokol slanja poruka i koja 
-            objasnjava kako koja funkcija radi
+      - Prioritet prekida USART3 prekidne rutine je podesen u funkciji initEurobotRS485.
+            Po potrebi ga promeniti, ja nisam znao koliki prioritet treba da bude.
+
+      - Ne bi trebalo slati dosta poruka jednu za drugom(Jedna komanda SendMessage
+            iza druge), komunikacija bi trebala da radi, ali ako ih ima vise, pobrljavice.
+
                     
 */
 
@@ -50,11 +49,16 @@
 /******************************************************************************/
 
 // Slanje poruke
-void SendMessage(unsigned char address, unsigned char* message);
+void SendString(unsigned char address, unsigned char* message);
+void SendMessage(unsigned char address, unsigned char* message, char length);
 // Dohvatanje poslednje validne poruke
 char* GetMessage();
 // Dohvatanje adrese posledenje validne poruke
 char GetAddress();
+// Dohvatanje duzine posledenje validne poruke
+char GetMessageLength();
+// Provera da li je poslednja primljena poruka ACK
+int IsAck();
 // Slanje ACK signala kao odgovor da je poruka primljena
 void SendACK(unsigned char address);
 // Iniciranje RS485 komunikacije
@@ -63,7 +67,6 @@ void initEurobotRS485(uint32_t BaudRate, uint8_t master_addr, uint8_t this_addr,
 void EnableRS485();
 // Kraj RS485 komunikacije
 void DisableRS485();
-
 
 /******************************************************************************/
 /******************************************************************************/

@@ -1,8 +1,8 @@
 /**
 *	@file: 	  EUROBOT_serial.c
 *	@author:  Jovan Blanusa (jovan.blanusa@gmail.com)
-*	@version: v1.02.230116.0344 
-*	@date: 	  23.1.2016
+*	@version: v1.03.140416.1033 
+*	@date: 	  14.4.2016
 *	@brief:	  API funkcije koje olaksavaju komunikaciju pojedinih STM-ova u
 *                 robotu. Ideja je da korisnik ovih funkcija ne misli o formatu
 *                 poruke i eventualnim greskama do kojih bi moglo doci prilikom
@@ -11,21 +11,20 @@
 *                 rutini posto se primi cela poruka.
 */
 
-/* Potrebno jos uraditi:
-      - Resiti problem integriteta poruke. Ako se zaredom salju dve poruke pomocu SendMessage
-            da ne moze druga poruka da prebrise prvu, nego da se obe posalju.
+/* Proveriti:
 
-      - Dodeliti adrese uredjajima, potom ispitati nacin dekodovanja komande i slanje ACK    
-         
-      - Poruka se trenutno salje kao string, pa samim tim ne sme ni jedan bajt biti
-            0, da li ce ovo smetati ili je potrebno napraviti novi nacin slanja 
-            poruke?
+      - Nacin slanja ACK signala. Stavljeno je da samo SLAVE podesi ACK, po potrebi
+            izmeniti to. ACK se salje u funkciji ProcessByte, case: CHECK
 
-      - Dodati da ako je uredjaj SLAVE, da automatski odredjuje adresu, dok master mora
-            da unosi adresu stalno
+      - Adrese su nasumicne, potrebno je definisati adrese, i iskoristiti funkcije
+            date u API-ju za komunikaciju
 
-      - Napisati dokument koji detaljnije objasnjava protokol slanja poruka i koja 
-            objasnjava kako koja funkcija radi
+      - Prioritet prekida USART3 prekidne rutine je podesen u funkciji initEurobotRS485.
+            Po potrebi ga promeniti, ja nisam znao koliki prioritet treba da bude.
+
+      - Ne bi trebalo slati dosta poruka jednu za drugom(Jedna komanda SendMessage
+            iza druge), komunikacija bi trebala da radi, ali ako ih ima vise, pobrljavice.
+
                     
 */
 
@@ -46,22 +45,33 @@
 // Maksimalna duzina podatka koji se salje
 #define MAX_DATA_LENGTH 0xFE // Ne sme biti 0xFF da se ne bi pomesalo sa pocetkom poruke
               
+#define VER2
+
 /**************************************************************************************/
-// Struktura koja sadrzi podatke potrebne za USART komunikaciju
+// Strukture za slanje i prijem poruke
 typedef struct {
-  uint8_t data[MAX_DATA_LENGTH];        // Podatak koji se šalje
+  uint8_t data[MAX_DATA_LENGTH];        // Podatak koji se prima
   char prev_data[MAX_DATA_LENGTH];      // Poslednji validan podatak
   uint8_t address;                      // Adresa gde se šalje
   char prev_address;                    // Adresa poslednjeg validnog podatka
   int message_length;                   // Dužina poruke
+  int prev_length;
   uint8_t check_sum;                    // Chech suma - potvrda validnosti poruke
   unsigned int iter;                    // Iterator za prenos podataka
 } data_package;
 
-// Strukture za slanje i prijem
-data_package sending;
 data_package received;
 
+
+typedef struct {
+  uint8_t *data;        // Podatak koji se šalje
+  int message_length;                   // Dužina poruke
+  unsigned int iter;                    // Iterator za prenos podataka
+} send_package;
+
+#ifndef VER2
+send_package sending;
+#endif
 /**************************************************************************************/
 
 // Poslednji primljeni bajt
@@ -89,6 +99,16 @@ typedef struct {
 } DeviceType;
 
 DeviceType ThisDevice;
+
+/**************************************************************************************/
+// Deklaracije za red
+int is_emptyQ();
+void insertQ(send_package* data);
+void delete_lastQ();
+send_package* peekQ();
+
+/**************************************************************************************/
+
 /**
 *   @brief: Pomocna funkcija koja niz pristiglih bajtova konvertuje u validnu poruku
 *   @param: String u koji se smesta poruka dobijena iz niza pristiglih bajtova
@@ -97,7 +117,7 @@ DeviceType ThisDevice;
 *
 */
 void ExtractMessage(char* dest, char* src){
-    unsigned int length = strlen(src);
+    unsigned int length = received.message_length;
     uint8_t high_bits = 0;
     //iterator za modifikovani niz, 3 pocetna vrednost, jer su prva 3 podatka vec postavljena u poruku
     int j = 0;
@@ -205,11 +225,12 @@ void ProcessByte(uint8_t received_byte){
       else{
         if ((received.check_sum & CHECHSUM_MASK) == received_byte){              
             ExtractMessage(received.prev_data,(char*)received.data);          
+            received.prev_length = received.message_length - (received.message_length/8 + (received.message_length % 8 != 0));
             received.prev_address = (char) received.address;
-
+            
         // Ako je ovo SLAVE vrati ACK            
         if(!ThisDevice.is_master) {
-            if(received.prev_data != "" && ThisDevice.this_addr == received.address) SendACK(ThisDevice.master_addr);
+          if(!IsAck() && ThisDevice.this_addr == received.address) SendACK(ThisDevice.master_addr);
         }
 
             DecodeCommand(); 
@@ -239,18 +260,29 @@ void USART3_IRQHandler(){
     else if (USART_GetITStatus(RS485, USART_IT_TC) != RESET)
     {
             USART_ClearITPendingBit(RS485, USART_IT_TC);
+            
             // Slanje poruke            
-            if (sending.iter < sending.message_length) // && sending_queue is_empty
+            if (peekQ()->iter < peekQ()->message_length && !is_emptyQ())
             {
-                    USART_SendData(RS485,  sending.data[sending.iter]);
-                    sending.iter++;
+                    USART_SendData(RS485,  peekQ()->data[peekQ()->iter]);
+                    peekQ()->iter++;
+                    if(peekQ()->iter == 2){
+                      int dummy = 2;
+                    }
             }
             else
-            {
-                    sending.iter = 0;
-                    DisableRS485();
-            }
-            
+            {       
+                    delete_lastQ();
+                    if(!is_emptyQ())
+                    {
+                        USART_SendData(RS485,  peekQ()->data[peekQ()->iter]);
+                    }
+                    else
+                    {
+                        delete_lastQ();
+                        DisableRS485();
+                    }
+            }          
 
     }
     else{
@@ -265,25 +297,38 @@ void USART3_IRQHandler(){
 }
 
 /**
-*   @brief: Slanje poruke preko USART/RS485
+*   @brief: Slanje stringa preko USART/RS485
 *   @param: Adresa uredjaja na koju se salju podaci
 *   @param: Poruka koja se salje na uredjaj. Potrebno je da bude u formatu stringa
 *           tj da se iza kraja poruke postavi znak '\0' odnosno 0x0
-*   @param: Broj USART kanala preko kog se salje poruka
 *   @return: Nema povratnu vrednost
 *
 */
-void SendMessage(unsigned char address, unsigned char* message){
+void SendString(unsigned char address, unsigned char* message){
+    SendMessage(address,message,strlen(message));
+}
+
+/**
+*   @brief: Slanje poruke preko USART/RS485
+*   @param: Adresa uredjaja na koju se salju podaci
+*   @param: Poruka koja se salje na uredjaj u obliku niza bajtova
+*   @param: Duzina poruke u bajtovima
+*   @return: Nema povratnu vrednost
+*
+*/
+void SendMessage(unsigned char address, unsigned char* message, char length){
   
-  unsigned int length = strlen(message);           // Duzina korisnog dela poruke
-  sending.address = address;                   
-  sending.message_length = length + 4;    // Ukupna duzina poruke      
-  sending.iter = 0;
-  sending.check_sum = 0;
+  send_package* sending = (send_package*)malloc(sizeof(send_package));
+  
+  //sending->message_length = length + 4;    // Ukupna duzina poruke  12 + 1 + 1 + 4
+  sending->message_length = 4 + length + (length/7) + (length % 7 != 0);
+  sending->data = (uint8_t*)malloc((sending->message_length + 1) * sizeof(uint8_t));
+  sending->iter = 0;    
+  char check_sum = 0;
   
   // Cuvanje Start bajta, adrese na koju se salje poruka
-  sending.data[0] = START_BYTE;
-  sending.data[1] = address;
+  sending->data[0] = START_BYTE;
+  sending->data[1] = address;
   // Duzina poruke na sending[usartNo].data[2]
   
   // Posto najvisi bit svakog bajta u poruci mora biti 0 da ne bi greskom doslo
@@ -305,24 +350,24 @@ void SendMessage(unsigned char address, unsigned char* message){
     if(bit == 7){
         j++;
         bit = 0;
-        sending.message_length++;
+    //    sending->message_length++;
     } 
 
     // azuriranje high_bits bajta i maskiranje najviseg bita kod ostalih bajtova
     high_bits |= ((~CHECHSUM_MASK) & message[i]) ? (1 << bit) : 0 ;
-    sending.data[j] = message[i] & CHECHSUM_MASK;
+    sending->data[j] = message[i] & CHECHSUM_MASK;
     
     // Azuriranje check sume
-    sending.check_sum += sending.data[j];
+    check_sum += sending->data[j];
 
     // Ako smo stigli do kraja jedne sekvence od 7 bajtova, sacuvati high_bits u
     // niz koji se prosledjuje, i poceti ispocetka.
     if (bit == 6){
         // Izbegavamo slanje 0x00, menjamo sa 0x80
         high_bits = (!high_bits) ? 0x80 : high_bits;
-        sending.data[j - 7] =  high_bits;        
+        sending->data[j - 7] =  high_bits;        
         //Azuriranje check sume
-        sending.check_sum += high_bits;
+        check_sum += high_bits;
         high_bits = 0;     
     }
     
@@ -333,43 +378,48 @@ void SendMessage(unsigned char address, unsigned char* message){
   if(bit != 7) {
     // Izbegavamo slanje 0x00, menjamo sa 0x80
     high_bits = (!high_bits) ? 0x80 : high_bits;
-    sending.data[j - bit - 1] =  high_bits;
+    sending->data[j - bit - 1] =  high_bits;
     //Azuriranje check sume
-    sending.check_sum += high_bits;
+    check_sum += high_bits;
   }
       
   // Cuvanje duzine poruke
-  sending.data[2] = sending.message_length - 4;
+  sending->data[2] = sending->message_length - 4;
   // Dodavanje adrese i duzine poruke na check sumu
-  sending.check_sum += sending.data[1] + sending.data[2];
+  check_sum += sending->data[1] + sending->data[2];
   // Uklanjanje najviseg bita sa check sume
-  sending.check_sum = sending.check_sum & CHECHSUM_MASK;
+  check_sum = check_sum & CHECHSUM_MASK;
 
   // Cuvanje check sume u niz koji se prosledjuje 
-  sending.data[sending.message_length - 1] = sending.check_sum;
+  sending->data[sending->message_length - 1] = check_sum;
   
   // Enable-uje se RS485 predaja
   EnableRS485();
   
   // Prvi clan niza se salje na USART, prekidna rutina salje ostatak poruke
-  USART_SendData(RS485,  sending.data[0]);
-  sending.iter = 1;
+  if(is_emptyQ()){
+    insertQ(sending);
+    sending->iter = 1;
+    USART_SendData(RS485,  sending->data[0]);
+  }
+  else {
+    insertQ(sending);
+  }
 }
 
 /**
 *   @brief: Slanje poruke kojom se signalizira uspesan prijem poruke
 *   @param: Adresa uredjaja na koji se ovaj signal salje
-*   @param: Broj USART kanala preko kog se salje poruka
 *   @return: Nema povratnu vrednost
 *
 */
 void SendACK(unsigned char address){
-    SendMessage(address, "");
+    SendString(address, "");
 }
 
 /**
 *   @brief: Preuzimanje poslednje validne poruke koja je stigla
-*   @param: Broj USART kanala sa koje preuzimamo poslednju validnu poruku
+*   @param: Nema
 *   @return: String koji predstavlja koristan deo pristigle poruke 
 *
 */
@@ -379,12 +429,33 @@ char* GetMessage(){
 
 /**
 *   @brief: Preuzimanje adrese na koju treba da stigne poslednja validna poruka
-*   @param: Broj USART kanala sa koje preuzimamo adresu
+*   @param: Nema
 *   @return: Adresa na koju je adresiran poslednji validni podatak
 *
 */
 char GetAddress(){
     return (char) received.prev_address;
+}
+
+/**
+*   @brief: Dohvatanje duzine posledenje validne poruke
+*   @param: Nema
+*   @return: Duzina poslednje validne poruke
+*
+*/
+char GetMessageLength(){
+    return received.prev_length;
+}
+
+/**
+*   @brief: Proveravanje da li je poslednja validna poruka ACK
+*   @param: Nema
+*   @return: Informacija da li je ACK poslednja poruka
+*
+*/
+int IsAck(){
+   if(GetMessage() == "" && GetMessageLength() == 0) return 1;
+   return 0;
 }
 
 /**
@@ -438,4 +509,57 @@ void EnableRS485(){
 */
 void DisableRS485(){
   GPIO_ResetBits(GPIOC,GPIO_Pin_12);
+}
+
+
+/**************************************************************************************/
+/*****************************  RED PORUKAMA ******************************************/
+/**************************************************************************************/
+
+typedef struct node {
+  send_package *data;
+  struct node *next;
+} list;
+
+list *first = 0, *last = 0;
+
+// Provera da li je red prazan
+int is_emptyQ(){
+  if(first == 0 && last == 0) return 1;
+  return 0;
+}
+
+// Ubacivanje elementa u red
+void insertQ(send_package* data){
+  list *tmp = (list*)malloc(sizeof(list));
+  tmp->next = 0;
+  tmp->data = data;
+  
+  if(is_emptyQ()){
+    first = last = tmp;
+    return;
+  }
+  
+  last->next = tmp;
+  last = last->next;
+}
+
+// Brise prvu poruku u redu
+void delete_lastQ(){
+  if(is_emptyQ()) return;
+ 
+  if(first == last) last = 0;
+  list *tmp = first;
+  first = first->next;
+  
+  free(tmp->data->data);
+  free(tmp->data);
+  free(tmp);
+  
+}
+
+// Procitati prvu poruku u redu
+send_package* peekQ(){
+  if(is_emptyQ()) return 0;  
+  return first->data;
 }
