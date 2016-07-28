@@ -152,7 +152,7 @@ void InitTIM_TimeBase( TIM_TypeDef *TIMx, uint16_t TIM_Prescaler, uint16_t TIM_P
 
 
 /**
-*   @brief: Inicijalizuje kanal tajmera u output compare modu.
+*   @brief  Inicijalizuje kanal tajmera u output compare modu.
 *   @param: TIMx pokazivac na zeljeni tajmer koji sadrzi adresu odgovarajuce
 *           periferije.
 *           Moguce vrednosti su: TIM1, TIM2, ..., TIM17.
@@ -178,12 +178,10 @@ void InitTIM_TimeBase( TIM_TypeDef *TIMx, uint16_t TIM_Prescaler, uint16_t TIM_P
 *                                         vrednost na izlazu se promeni.
 *              @arg: TIM_OCMode_PWM1,     generise impulse koji su edge-aligned.
 *              @arg: TIM_OCMode_PWM2,     generise impulse koji su center-aligned.
-*   @param: pulse definise vrednost u CCR-u kanala. Moguce vrednosti su od 0x0000 do 0xFFFF.
-*   @param: polarity definise da li je izlaz aktivan na logickoj jedinici ili logickoj nuli.
-*           Moguce vrednosti su:
-*              @arg: TIM_OCPolarity_High, postavlja aktivan nivo na logicku jedinicu.
-*              @arg: TIM_OCPolarity_Low,  postavlja aktivan nivo na logicku nulu.
-*   @return: Nema povratne vrednosti.
+*   @param  pulse Definise vrednost u CCR-u kanala. Moguce vrednosti su od 0x0000 do 0xFFFF.
+*   @param  polarity Definise da li je izlaz aktivan na logickoj jedinici ili logickoj nuli.
+*       @arg TIM_OCPolarity_High  Postavlja aktivan nivo na logicku jedinicu.
+*       @arg TIM_OCPolarity_Low   Postavlja aktivan nivo na logicku nulu.
 *
 */
 void InitTIM_OC(TIM_TypeDef *TIMx, uint16_t channel, uint16_t output_state, uint16_t oc_mode, uint16_t pulse, uint16_t polarity)
