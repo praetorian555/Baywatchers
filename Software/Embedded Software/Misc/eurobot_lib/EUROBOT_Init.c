@@ -168,16 +168,16 @@ void InitTIM_TimeBase( TIM_TypeDef *TIMx, uint16_t TIM_Prescaler, uint16_t TIM_P
 *              @arg: TIM_OutputState_Disable, zatvara kanal.
 *   @param: oc_mode definise tip signala koji se generise na izlazu kanala.
 *           Moguce vrednosti:
-*              @arg: TIM_OCMode_Timing,   poredjenje sadrzaja registara CCRx i CNT nemaju
+*              @arg TIM_OCMode_Timing,   poredjenje sadrzaja registara CCRx i CNT nemaju
 *                                         uticaja na vrednost na izlazu.
-*              @arg: TIM_OCMode_Active,   izlaz se stavlja na 1 kad se sadrzaji registara
+*              @arg TIM_OCMode_Active,   izlaz se stavlja na 1 kad se sadrzaji registara
 *                                         CCRx i CNT poklope.
-*              @arg: TIM_OCMode_Inactive, izlaz se stavlja na nulu kad se sadrzaji
+*              @arg TIM_OCMode_Inactive, izlaz se stavlja na nulu kad se sadrzaji
 *                                         registara CCRx i CNT poklope.
-*              #arg: TIM_OCMode_Toggle,   kad se poklope sadrzaji registara CCRx i CNT
+*              @arg TIM_OCMode_Toggle,   kad se poklope sadrzaji registara CCRx i CNT
 *                                         vrednost na izlazu se promeni.
-*              @arg: TIM_OCMode_PWM1,     generise impulse koji su edge-aligned.
-*              @arg: TIM_OCMode_PWM2,     generise impulse koji su center-aligned.
+*              @arg TIM_OCMode_PWM1,     generise impulse koji su edge-aligned.
+*              @arg TIM_OCMode_PWM2,     generise impulse koji su center-aligned.
 *   @param  pulse Definise vrednost u CCR-u kanala. Moguce vrednosti su od 0x0000 do 0xFFFF.
 *   @param  polarity Definise da li je izlaz aktivan na logickoj jedinici ili logickoj nuli.
 *       @arg TIM_OCPolarity_High  Postavlja aktivan nivo na logicku jedinicu.
