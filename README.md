@@ -1,2 +1,2 @@
 # Baywatchers
-This is official repository for the team Baywatchers that competed at EUROBOT Serbia 2016.
+This is the official repository for the team Baywatchers that competed at EUROBOT Serbia 2016.
