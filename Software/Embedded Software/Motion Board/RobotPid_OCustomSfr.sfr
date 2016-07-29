@@ -1,0 +1,7 @@
+[Sfr]
+sfr = "TIM6_CNT",	"Memory",	0x40001024,	4,	base=16,	modified
+sfr = "USART2_CR1",	"Memory",	0x4000440c,	4,	base=16,	modified
+sfr = "DAC_DHR12RD",	"Memory",	0x40007420,	4,	base=16,	modified
+
+
+[SfrGroupInfo]

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2240533375</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_it.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\EUROBOT_Init.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\ymath.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\EUROBOT_Communication.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\EUROBOT_Init.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\Communication.o</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Include\core_cm3.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\startup_stm32f10x_md_vl.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\MainStateMachine.pbd</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</file>
+      <file>$PROJ_DIR$\Communication.c</file>
+      <file>$PROJ_DIR$\main_MainStateMachine.c</file>
+      <file>$PROJ_DIR$\stm32f10x_conf.h</file>
+      <file>$PROJ_DIR$\stm32f10x_it.c</file>
+      <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_usart.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_gpio.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_tim.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\EUROBOT_Communication.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_rcc.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_adc.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_gpio.pbi</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_exti.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main_MainStateMachine.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\misc.o</file>
+      <file>$PROJ_DIR$\Communication.h</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h</file>
+      <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_dma.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\EUROBOT_Movement.o</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_dma.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_usart.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\STM32vldiscovery.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\EUROBOT_Movement.pbi</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_adc.pbi</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Include\core_cmFunc.h</file>
+      <file>$TOOLKIT_DIR$\CMSIS\Include\core_cmInstr.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\system_stm32f10x.o</file>
+      <file>$PROJ_DIR$\Link\stm32f10x_flash.icf</file>
+      <file>$PROJ_DIR$\..\Motion Board\stm32f10x_it_stu.c</file>
+      <file>$PROJ_DIR$\..\BaywatchersAPI\src\EUROBOT_serial.c</file>
+      <file>$PROJ_DIR$\..\BaywatchersAPI\inc\EUROBOT_Init.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_it.o</file>
+      <file>$PROJ_DIR$\Libraries\DISCOVERY\STM32vldiscovery.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_dma.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\STM32vldiscovery.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\cmsis_iar.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_tim.pbi</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h</file>
+      <file>$PROJ_DIR$\..\BaywatchersAPI\inc\EUROBOT_Communication.h</file>
+      <file>$PROJ_DIR$\..\BaywatchersAPI\inc\EUROBOT_Movement.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\misc.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\stm32f10x_rcc.pbi</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\system_stm32f10x.pbi</file>
+      <file>$PROJ_DIR$\..\BaywatchersAPI\src\EUROBOT_Init.c</file>
+      <file>$PROJ_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\iar\startup_stm32f10x_md_vl.s</file>
+      <file>$PROJ_DIR$\..\BaywatchersAPI\src\EUROBOT_Communication.c</file>
+      <file>$PROJ_DIR$\..\BaywatchersAPI\src\EUROBOT_Movement.c</file>
+      <file>$PROJ_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.c</file>
+      <file>$PROJ_DIR$\Libraries\DISCOVERY\STM32vldiscovery.c</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\Template.out</file>
+      <file>$TOOLKIT_DIR$\inc\c\math.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main_MainStateMachine.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\xtgmath.h</file>
+      <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_gpio.h</file>
+      <file>$PROJ_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h</file>
+      <file>$PROJ_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\Communication.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\stm32f10x_it.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 59 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 39 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39 83 9 86 60 88 42 23 52 35 82 81 31 59 15 41 80 21 84 73 5 54 27 6</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 74</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 18</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 6 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 59 39 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 88 81 9 52 31 59 83 82 42 60 23 86 35 39 6 15 41 80 21 84 73 5 54 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Communication.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 85</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 15 54 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 35 27 81 59 39 6 31 47 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 83 88 27 6 86 60 30 54 59 9 42 23 52 47 35 81 39 31 82 15 41 80 21 84 73 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main_MainStateMachine.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 76</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 15 54 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 35 27 81 59 39 6 31 47 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6 42 83 23 52 60 27 88 30 54 59 9 86 47 35 81 39 31 82 15 41 80 21 84 73 5</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\stm32f10x_it.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 48</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 87 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 59 39 6 31 49 30</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 83 23 82 21 73 54 30 15 59 49 9 88 41 80 84 5 27 6 87 42 60 86 52 35 81 39 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\BaywatchersAPI\src\EUROBOT_Init.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 7</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 59 39 6 31 47</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23 83 82 21 73 54 47 15 59 9 88 41 80 84 5 27 6 42 60 86 52 35 81 39 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\iar\startup_stm32f10x_md_vl.s</name>
+      <outputs>
+        <tool>
+          <name>AARM</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\BaywatchersAPI\src\EUROBOT_Communication.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 55 56 15 54 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 35 27 81 59 39 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 81 21 73 23 83 31 15 35 39 82 56 54 27 59 6 9 88 41 80 84 5 55 42 60 86 52</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\BaywatchersAPI\src\EUROBOT_Movement.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 34</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 56 15 54 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 35 27 81 59 39 6 31 75 3 77</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 77 59 60 54 9 75 27 6 83 88 52 15 35 81 39 31 82 42 23 86 56 41 80 21 84 73 5 3</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 43</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 61</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 59 39 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 83 27 88 5 41 9 80 84 6 82 15 23 21 73 54 59 42 60 86 52 35 81 39 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\DISCOVERY\STM32vldiscovery.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 37</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 49 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 59 39 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23 88 83 21 73 54 9 15 59 82 41 80 84 5 27 6 49 42 60 86 52 35 81 39 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 29</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 57</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 31 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 59 39 6</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 60 86 39 82 42 23 52 35 83 9 88 81 31 15 41 80 21 84 73 5 54 27 59 6</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_tim.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 20</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 39 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 81 59 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41 88 83 5 27 9 80 84 6 59 82 15 23 21 73 54 39 42 60 86 52 35 81 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 25</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 54 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 35 27 81 59 39 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41 83 5 27 82 88 80 84 6 59 9 15 23 21 73 54 42 60 86 52 35 81 39 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 33</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 35 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 27 81 59 39 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 83 42 88 23 52 60 35 9 86 39 59 82 81 31 15 41 80 21 84 73 5 54 27 6</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</name>
+      <outputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCARM</name>
+          <file> 81 83 9 88 23 60 80 84 73 21 86 42 52 5 41 82 15 54 35 27 59 39 6 31</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 88 86 60 39 83 9 42 23 52 35 59 82 81 31 15 41 80 21 84 73 5 54 27 6</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\Template.out</name>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 44 8 7 76 29 10 25 33 19 48 24 20 18 51 43 32 79 78 17</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

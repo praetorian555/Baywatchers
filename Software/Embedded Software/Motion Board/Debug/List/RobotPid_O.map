@@ -1,0 +1,805 @@
+###############################################################################
+#
+# IAR ELF Linker V7.50.1.10123/W32 for ARM                29/Jul/2016  19:09:15
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\Marko\Documents\Baywatchers\Software\Embedded Software\Motion
+#        Board\Debug\Exe\RobotPid_O.out
+#    Map file     =  
+#        C:\Users\Marko\Documents\Baywatchers\Software\Embedded Software\Motion
+#        Board\Debug\List\RobotPid_O.map
+#    Command line =  
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\acc_table.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\continous_movement.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\EUROBOT_Init.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\main_template.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\misc.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\position_controler.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\print.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\speed_table_acc.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\speed_table_decc.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\startup_stm32f10x_md_vl.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\stm32f10x_adc.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\stm32f10x_exti.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\stm32f10x_gpio.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\stm32f10x_it_stu.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\stm32f10x_rcc.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\stm32f10x_tim.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\stm32f10x_usart.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\STM32vldiscovery.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\system_stm32f10x.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\UartDebug.o"
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Obj\variables.o" -o
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\Exe\RobotPid_O.out" --map
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Debug\List\RobotPid_O.map" --config
+#        "C:\Users\Marko\Documents\Baywatchers\Software\Embedded
+#        Software\Motion Board\Link\stm32f10x_flash.icf" --semihosting --entry
+#        __iar_program_start --vfe
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+CppFlavor       = *
+__SystemLibrary = DLib
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at 0x08000000 { ro section .intvec };
+"P1":  place in [from 0x08000000 to 0x080fffff] { ro };
+"P2":  place in [from 0x20000000 to 0x20017fff] { rw, block CSTACK, block HEAP };
+
+  Section             Kind        Address    Size  Object
+  -------             ----        -------    ----  ------
+"A1":                                       0x120
+  .intvec             ro code  0x08000000   0x120  startup_stm32f10x_md_vl.o [1]
+                             - 0x08000120   0x120
+
+"P1":                                      0x6958
+  .text               ro code  0x08000120  0x2108  stm32f10x_it_stu.o [1]
+  .text               ro code  0x08002228    0x32  I32ToFlt.o [4]
+  .text               ro code  0x0800225c    0xd8  FltMul.o [4]
+  .text               ro code  0x08002334    0x84  FltAdd.o [4]
+  .text               ro code  0x080023b8    0x30  I32ToDbl.o [4]
+  .text               ro code  0x080023e8    0x4e  FltToDbl.o [4]
+  .text               ro code  0x08002438   0x1a2  DblMul.o [4]
+  .text               ro code  0x080025dc   0x256  DblDiv.o [4]
+  .text               ro code  0x08002832     0x6  sin.o [4]
+  .text               ro code  0x08002838    0x90  DblToFlt.o [4]
+  .text               ro code  0x080028c8    0x44  FltToS32.o [4]
+  .text               ro code  0x0800290c     0x6  cos.o [4]
+  .text               ro code  0x08002914   0x1cc  stm32f10x_gpio.o [1]
+  .text               ro code  0x08002ae0   0x1f6  stm32f10x_usart.o [1]
+  .text               ro code  0x08002cd8    0xfc  FltDiv.o [4]
+  .text               ro code  0x08002dd4    0xc4  stm32f10x_exti.o [1]
+  .text               ro code  0x08002e98   0x130  continous_movement.o [1]
+  .text               ro code  0x08002fc8    0xe6  FltSub.o [4]
+  .text               ro code  0x080030b0    0x24  FltToU32.o [4]
+  .text               ro code  0x080030d4    0x24  FltCmpGe.o [4]
+  .text               ro code  0x080030f8    0xe8  DblAdd.o [4]
+  .text               ro code  0x080031e0    0x24  FltCmpLe.o [4]
+  .text               ro code  0x08003204   0x5dc  stm32f10x_tim.o [1]
+  .text               ro code  0x080037e0   0x426  xsin.o [4]
+  .text               ro code  0x08003c08   0x11c  stm32f10x_rcc.o [1]
+  .text               ro code  0x08003d24    0xf0  sqrt.o [4]
+  .text               ro code  0x08003e14    0xcc  atan2.o [4]
+  .text               ro code  0x08003ee0   0x180  DblSub.o [4]
+  .text               ro code  0x08004060    0x2e  DblCmpLe.o [4]
+  .text               ro code  0x08004090    0x2e  DblCmpGe.o [4]
+  .text               ro code  0x080040c0    0x4c  DblToI32.o [4]
+  .text               ro code  0x0800410c     0xc  errno.o [3]
+  .text               ro code  0x08004118   0x160  xquad.o [4]
+  .text               ro code  0x08004278     0xc  iarEdom.o [5]
+  .text               ro code  0x08004284    0x32  xdtest.o [4]
+  .text               ro code  0x080042b8   0x1e0  xatan.o [4]
+  .text               ro code  0x08004498     0x2  xtls.o [3]
+  .text               ro code  0x0800449a    0x7a  xdint.o [4]
+  .text               ro code  0x08004514    0x20  DblCmpEq.o [4]
+  .text               ro code  0x08004534   0x1a8  fmod.o [4]
+  .rodata             const    0x080046dc   0x7d0  speed_table_acc.o [1]
+  .rodata             const    0x08004eac   0x7d0  speed_table_decc.o [1]
+  .text               ro code  0x0800567c   0x604  position_controler.o [1]
+  .text               ro code  0x08005c80    0x70  misc.o [1]
+  .text               ro code  0x08005cf0     0x8  abs.o [3]
+  .text               ro code  0x08005cf8   0x4f0  main_template.o [1]
+  .text               ro code  0x080061e8   0x10e  UartDebug.o [1]
+  .text               ro code  0x080062f8   0x258  EUROBOT_Init.o [1]
+  .rodata             const    0x08006550   0x190  acc_table.o [1]
+  .text               ro code  0x080066e0   0x12c  system_stm32f10x.o [1]
+  Initializer bytes   const    0x0800680c    0x8c  <for P2-1>
+  .text               ro code  0x08006898    0x40  zero_init3.o [5]
+  .text               ro code  0x080068d8    0x2c  copy_init3.o [5]
+  .text               ro code  0x08006904    0x28  data_init.o [5]
+  .iar.init_table     const    0x0800692c    0x24  - Linker created -
+  .text               ro code  0x08006950    0x1a  cmain.o [5]
+  .text               ro code  0x0800696a     0x4  low_level_init.o [3]
+  .text               ro code  0x0800696e     0x4  exit.o [3]
+  .text               ro code  0x08006974     0xa  cexit.o [5]
+  .text               ro code  0x08006980    0x14  exit.o [6]
+  .text               ro code  0x08006994    0x10  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069a4     0xc  cstartup_M.o [5]
+  .text               ro code  0x080069b0     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069b4     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069b8     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069bc     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069c0     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069c4     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069c8     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069cc     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069d0     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069d4     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069d8     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069dc     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069e0     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069e4     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069e8     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069ec     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069f0     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069f4     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069f8     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x080069fc     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a00     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a04     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a08     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a0c     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a10     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a14     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a18     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a1c     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a20     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a24     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a28     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a2c     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a30     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a34     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a38     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a3c     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a40     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a44     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a48     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a4c     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a50     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a54     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a58     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a5c     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a60     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a64     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a68     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a6c     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a70     0x4  startup_stm32f10x_md_vl.o [1]
+  .text               ro code  0x08006a74     0x4  startup_stm32f10x_md_vl.o [1]
+  .rodata             const    0x08006a78     0x0  zero_init3.o [5]
+  .rodata             const    0x08006a78     0x0  copy_init3.o [5]
+                             - 0x08006a78  0x6958
+
+"P2", part 1 of 3:                           0x8c
+  P2-1                         0x20000000    0x89  <Init block>
+    .data             inited   0x20000000     0x4  main_template.o [1]
+    .data             inited   0x20000004     0x4  main_template.o [1]
+    .data             inited   0x20000008     0x4  main_template.o [1]
+    .data             inited   0x2000000c     0x4  main_template.o [1]
+    .data             inited   0x20000010     0x4  main_template.o [1]
+    .data             inited   0x20000014     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000018     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x2000001c     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000020     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000024     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000028     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x2000002c     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000030     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000034     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000038     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x2000003c     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000040     0x4  stm32f10x_it_stu.o [1]
+    .data             inited   0x20000044    0x10  stm32f10x_rcc.o [1]
+    .data             inited   0x20000054     0x4  stm32f10x_rcc.o [1]
+    .data             inited   0x20000058     0x4  system_stm32f10x.o [1]
+    .data             inited   0x2000005c     0x4  variables.o [1]
+    .data             inited   0x20000060     0x4  variables.o [1]
+    .data             inited   0x20000064     0x4  variables.o [1]
+    .data             inited   0x20000068     0x4  variables.o [1]
+    .data             inited   0x2000006c     0x4  variables.o [1]
+    .data             inited   0x20000070     0x4  variables.o [1]
+    .data             inited   0x20000074     0x4  variables.o [1]
+    .data             inited   0x20000078     0x4  variables.o [1]
+    .data             inited   0x2000007c     0x4  variables.o [1]
+    __DLIB_PERTHREAD  inited   0x20000080     0x4  errno.o [3]
+    .data             inited   0x20000084     0x1  variables.o [1]
+    .data             inited   0x20000085     0x1  variables.o [1]
+    .data             inited   0x20000086     0x1  variables.o [1]
+    .data             inited   0x20000087     0x1  variables.o [1]
+    .data             inited   0x20000088     0x1  variables.o [1]
+                             - 0x20000089    0x89
+
+"P2", part 2 of 3:                          0x400
+  CSTACK                       0x20000090   0x400  <Block>
+    CSTACK            uninit   0x20000090   0x400  <Block tail>
+                             - 0x20000490   0x400
+
+"P2", part 3 of 3:                          0xd1c
+  .bss                zero     0x20000490   0x410  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200008a0   0x320  main_template.o [1]
+  .bss                zero     0x20000bc0   0x320  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20000ee0   0x190  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001070    0x10  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001080     0xc  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000108c     0xc  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001098     0xc  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010a4     0xc  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010b0     0xc  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010bc     0x8  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010c4     0x4  main_template.o [1]
+  .bss                zero     0x200010c8     0x4  main_template.o [1]
+  .bss                zero     0x200010cc     0x4  main_template.o [1]
+  .bss                zero     0x200010d0     0x4  main_template.o [1]
+  .bss                zero     0x200010d4     0x4  main_template.o [1]
+  .bss                zero     0x200010d8     0x4  main_template.o [1]
+  .bss                zero     0x200010dc     0x4  main_template.o [1]
+  .bss                zero     0x200010e0     0x4  main_template.o [1]
+  .bss                zero     0x200010e4     0x4  main_template.o [1]
+  .bss                zero     0x200010e8     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010ec     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010f0     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010f4     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010f8     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200010fc     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001100     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001104     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001108     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000110c     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001110     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001114     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001118     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000111c     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001120     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001124     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001128     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000112c     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001130     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001134     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001138     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000113c     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001140     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001144     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001148     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000114c     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001150     0x4  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001154     0x4  variables.o [1]
+  .bss                zero     0x20001158     0x4  variables.o [1]
+  .bss                zero     0x2000115c     0x4  variables.o [1]
+  .bss                zero     0x20001160     0x4  variables.o [1]
+  .bss                zero     0x20001164     0x4  variables.o [1]
+  .bss                zero     0x20001168     0x4  variables.o [1]
+  .bss                zero     0x2000116c     0x4  variables.o [1]
+  .bss                zero     0x20001170     0x4  variables.o [1]
+  .bss                zero     0x20001174     0x4  variables.o [1]
+  .bss                zero     0x20001178     0x4  variables.o [1]
+  .bss                zero     0x2000117c     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000117e     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001180     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001182     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001184     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001186     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001188     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000118a     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000118c     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000118e     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001190     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001192     0x2  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001194     0x1  main_template.o [1]
+  .bss                zero     0x20001195     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001196     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001197     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001198     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x20001199     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000119a     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000119b     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000119c     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000119d     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000119e     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x2000119f     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a0     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a1     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a2     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a3     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a4     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a5     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a6     0x1  stm32f10x_it_stu.o [1]
+  .bss                zero     0x200011a7     0x1  variables.o [1]
+  .bss                zero     0x200011a8     0x1  variables.o [1]
+  .bss                zero     0x200011a9     0x1  variables.o [1]
+  .bss                zero     0x200011aa     0x1  variables.o [1]
+                             - 0x200011ab   0xd1b
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address     Size
+          -------     ----
+Zero (__iar_zero_init3)
+    1 destination range, total size 0xd1b:
+          0x20000490  0xd1b
+
+Copy (__iar_copy_init3)
+    1 source range, total size 0x8c (102% of destination):
+          0x0800680c   0x8c
+    1 destination range, total size 0x89:
+          0x20000000   0x89
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                     ro code  ro data  rw data
+    ------                     -------  -------  -------
+C:\Users\Marko\Documents\Baywatchers\Software\Embedded Software\Motion Board\Debug\Obj: [1]
+    EUROBOT_Init.o                 600
+    UartDebug.o                    270
+    acc_table.o                             400
+    continous_movement.o           304
+    main_template.o              1 264       20      857
+    misc.o                         112
+    position_controler.o         1 540
+    speed_table_acc.o                     2 000
+    speed_table_decc.o                    2 000
+    startup_stm32f10x_md_vl.o      504
+    stm32f10x_exti.o               196
+    stm32f10x_gpio.o               460
+    stm32f10x_it_stu.o           8 456       48    2 522
+    stm32f10x_rcc.o                284       20       20
+    stm32f10x_tim.o              1 500
+    stm32f10x_usart.o              502
+    system_stm32f10x.o             300        4        4
+    variables.o                              41       85
+    ----------------------------------------------------
+    Total:                      16 292    4 533    3 488
+
+command line: [2]
+    ----------------------------------------------------
+    Total:
+
+dl7M_tln.a: [3]
+    abs.o                            8
+    errno.o                         12        4        4
+    exit.o                           4
+    low_level_init.o                 4
+    xtls.o                           2
+    ----------------------------------------------------
+    Total:                          30        4        4
+
+m7M_tl.a: [4]
+    DblAdd.o                       232
+    DblCmpEq.o                      32
+    DblCmpGe.o                      46
+    DblCmpLe.o                      46
+    DblDiv.o                       598
+    DblMul.o                       418
+    DblSub.o                       384
+    DblToFlt.o                     144
+    DblToI32.o                      76
+    FltAdd.o                       132
+    FltCmpGe.o                      36
+    FltCmpLe.o                      36
+    FltDiv.o                       252
+    FltMul.o                       216
+    FltSub.o                       230
+    FltToDbl.o                      78
+    FltToS32.o                      68
+    FltToU32.o                      36
+    I32ToDbl.o                      48
+    I32ToFlt.o                      50
+    atan2.o                        204
+    cos.o                            6
+    fmod.o                         424
+    sin.o                            6
+    sqrt.o                         240
+    xatan.o                        480
+    xdint.o                        122
+    xdtest.o                        50
+    xquad.o                        352
+    xsin.o                       1 062
+    ----------------------------------------------------
+    Total:                       6 104
+
+rt7M_tl.a: [5]
+    cexit.o                         10
+    cmain.o                         26
+    copy_init3.o                    44
+    cstartup_M.o                    12
+    data_init.o                     40
+    iarEdom.o                       12
+    zero_init3.o                    64
+    ----------------------------------------------------
+    Total:                         208
+
+shb_l.a: [6]
+    exit.o                          20
+    ----------------------------------------------------
+    Total:                          20
+
+    Gaps                            26
+    Linker created                           39    1 024
+--------------------------------------------------------
+    Grand Total:                22 680    4 576    4 516
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                      Address   Size  Type      Object
+-----                      -------   ----  ----      ------
+.iar.init_table$$Base   0x0800692c          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x08006950          --   Gb  - Linker created -
+?main                   0x08006951         Code  Gb  cmain.o [5]
+ADCPrescTable           0x20000054    0x4  Data  Lc  stm32f10x_rcc.o [1]
+APBAHBPrescTable        0x20000044   0x10  Data  Lc  stm32f10x_rcc.o [1]
+BusFault_Handler        0x08000ffb    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+CSTACK$$Base            0x20000090          --   Gb  - Linker created -
+CSTACK$$Limit           0x20000490          --   Gb  - Linker created -
+DebugMon_Handler        0x08001001    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+DelayUSART              0x080062ed    0xa  Code  Gb  UartDebug.o [1]
+ENC1                    0x2000005c    0x4  Data  Gb  variables.o [1]
+ENC1_old                0x20000060    0x4  Data  Gb  variables.o [1]
+ENC2                    0x20000064    0x4  Data  Gb  variables.o [1]
+ENC2_old                0x20000068    0x4  Data  Gb  variables.o [1]
+EXTI15_10_IRQHandler    0x08000e85  0x12e  Code  Gb  stm32f10x_it_stu.o [1]
+EXTI2_IRQHandler        0x08000d55   0x8c  Code  Gb  stm32f10x_it_stu.o [1]
+EXTI9_5_IRQHandler      0x08000de5   0x8c  Code  Gb  stm32f10x_it_stu.o [1]
+EXTI_ClearITPendingBit  0x08002e7d    0x6  Code  Gb  stm32f10x_exti.o [1]
+EXTI_GetITStatus        0x08002e5b   0x22  Code  Gb  stm32f10x_exti.o [1]
+EXTI_Init               0x08002dd5   0x86  Code  Gb  stm32f10x_exti.o [1]
+FLAG_obstacleDetected   0x200011a5    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+FLAG_sensorBackEnable   0x200011a4    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+FLAG_sensorEnable       0x200011a2    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+FLAG_sensorFrontEnable  0x200011a3    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+GPIO_EXTILineConfig     0x08002a87   0x4e  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_Init               0x08002915   0xc0  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_PinRemapConfig     0x08002a07   0x80  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_ReadInputDataBit   0x080029e5   0x16  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_ResetBits          0x08002a01    0x6  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_SetBits            0x080029fb    0x6  Code  Gb  stm32f10x_gpio.o [1]
+GPIO_StructInit         0x080029d5   0x10  Code  Gb  stm32f10x_gpio.o [1]
+HardFault_Handler       0x08000ff7    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+InitGPIO_Pin            0x080062f9   0x92  Code  Gb  EUROBOT_Init.o [1]
+InitNVICChannel         0x08006501   0x1a  Code  Gb  EUROBOT_Init.o [1]
+InitTIM_IC              0x080064c7   0x3a  Code  Gb  EUROBOT_Init.o [1]
+InitTIM_OC              0x0800645d   0x6a  Code  Gb  EUROBOT_Init.o [1]
+InitTIM_TimeBase        0x0800638b   0xd2  Code  Gb  EUROBOT_Init.o [1]
+InitTimer6              0x0800602b   0x3a  Code  Gb  main_template.o [1]
+InitUltrasoundHCSR04    0x08006065  0x132  Code  Gb  main_template.o [1]
+Int1                    0x200010d4    0x4  Data  Gb  main_template.o [1]
+Int2                    0x200010d8    0x4  Data  Gb  main_template.o [1]
+Intc                    0x20001118    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+Intensity               0x08002ed5   0x20  Code  Gb  continous_movement.o [1]
+Kd                      0x200010d0    0x4  Data  Gb  main_template.o [1]
+Ki                      0x20000004    0x4  Data  Gb  main_template.o [1]
+Kp                      0x20000000    0x4  Data  Gb  main_template.o [1]
+MAX_DIFF_SPEED          0x2000001c    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+MAX_SPEED               0x20000020    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+MAX_SPEED_TOTAL         0x20000024    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+MemManage_Handler       0x08000ff9    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+NMI_Handler             0x08000ff5    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+NVIC_Init               0x08005c81   0x5e  Code  Gb  misc.o [1]
+NVIC_SetPriority        0x08005cf9   0x26  Code  Lc  main_template.o [1]
+PID1                    0x08001791   0xd2  Code  Gb  stm32f10x_it_stu.o [1]
+PID2                    0x08001879   0xd2  Code  Gb  stm32f10x_it_stu.o [1]
+PID_continous           0x080016a5   0xd6  Code  Gb  stm32f10x_it_stu.o [1]
+PID_poz                 0x08001951    0xa  Code  Gb  stm32f10x_it_stu.o [1]
+PendSV_Handler          0x08001003    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+Pos1                    0x20000008    0x4  Data  Gb  main_template.o [1]
+Pos2                    0x2000000c    0x4  Data  Gb  main_template.o [1]
+PositionControllerInit  0x0800567d  0x10c  Code  Gb  position_controler.o [1]
+RCC_APB1PeriphClockCmd  0x08003ce5   0x20  Code  Gb  stm32f10x_rcc.o [1]
+RCC_APB2PeriphClockCmd  0x08003cc5   0x20  Code  Gb  stm32f10x_rcc.o [1]
+RCC_GetClocksFreq       0x08003c09   0xbc  Code  Gb  stm32f10x_rcc.o [1]
+Region$$Table$$Base     0x0800692c          --   Gb  - Linker created -
+Region$$Table$$Limit    0x08006950          --   Gb  - Linker created -
+Response                0x08000655  0x52c  Code  Gb  stm32f10x_it_stu.o [1]
+SVC_Handler             0x08000fff    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+SendAck                 0x08000261   0x92  Code  Gb  stm32f10x_it_stu.o [1]
+SendDestFlag            0x0800053f  0x116  Code  Gb  stm32f10x_it_stu.o [1]
+SendPosition            0x080002f3  0x24c  Code  Gb  stm32f10x_it_stu.o [1]
+SetSysClock             0x08006733    0x8  Code  Lc  system_stm32f10x.o [1]
+SetSysClockTo24         0x0800673b   0xb8  Code  Lc  system_stm32f10x.o [1]
+SysTick_Config          0x08005d1f   0x34  Code  Lc  main_template.o [1]
+SysTick_Handler         0x08001005  0x6a0  Code  Gb  stm32f10x_it_stu.o [1]
+SystemCoreClock         0x20000058    0x4  Data  Gb  system_stm32f10x.o [1]
+SystemInit              0x080066e1   0x52  Code  Gb  system_stm32f10x.o [1]
+TI1_Config              0x08003701   0x34  Code  Lc  stm32f10x_tim.o [1]
+TI2_Config              0x08003735   0x3a  Code  Lc  stm32f10x_tim.o [1]
+TI3_Config              0x0800376f   0x38  Code  Lc  stm32f10x_tim.o [1]
+TI4_Config              0x080037a7   0x3a  Code  Lc  stm32f10x_tim.o [1]
+TIM2_IRQHandler         0x08005789   0x2a  Code  Gb  position_controler.o [1]
+TIM3_IRQHandler         0x08005c01    0xc  Code  Gb  position_controler.o [1]
+TIM4_IRQHandler         0x08001bed  0x512  Code  Gb  stm32f10x_it_stu.o [1]
+TIM6_DAC_IRQHandler     0x08002105   0x32  Code  Gb  stm32f10x_it_stu.o [1]
+TIM7_IRQHandler         0x080057b3   0x74  Code  Gb  position_controler.o [1]
+TIM_ARRPreloadConfig    0x080035c7   0x1c  Code  Gb  stm32f10x_tim.o [1]
+TIM_CCxNCmd             0x0800364b   0x20  Code  Gb  stm32f10x_tim.o [1]
+TIM_ClearFlag           0x080036c9    0x8  Code  Gb  stm32f10x_tim.o [1]
+TIM_ClearITPendingBit   0x080036f9    0x8  Code  Gb  stm32f10x_tim.o [1]
+TIM_Cmd                 0x08003561   0x1c  Code  Gb  stm32f10x_tim.o [1]
+TIM_CtrlPWMOutputs      0x0800357d   0x22  Code  Gb  stm32f10x_tim.o [1]
+TIM_GetCapture1         0x080036b7    0x4  Code  Gb  stm32f10x_tim.o [1]
+TIM_GetCapture2         0x080036bb    0x4  Code  Gb  stm32f10x_tim.o [1]
+TIM_GetCapture3         0x080036bf    0x4  Code  Gb  stm32f10x_tim.o [1]
+TIM_GetCapture4         0x080036c3    0x6  Code  Gb  stm32f10x_tim.o [1]
+TIM_GetITStatus         0x080036d1   0x28  Code  Gb  stm32f10x_tim.o [1]
+TIM_ICInit              0x080034a1   0x70  Code  Gb  stm32f10x_tim.o [1]
+TIM_ICStructInit        0x0800354b   0x16  Code  Gb  stm32f10x_tim.o [1]
+TIM_ITConfig            0x0800359f   0x18  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC1Init             0x0800327f   0x8a  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC1NPolarityConfig  0x080035f3   0x10  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC1PolarityConfig   0x080035e3   0x10  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC2Init             0x08003309   0x86  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC2NPolarityConfig  0x08003615   0x12  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC2PolarityConfig   0x08003603   0x12  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC3Init             0x0800338f   0x84  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC3PolarityConfig   0x08003627   0x12  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC4Init             0x08003413   0x64  Code  Gb  stm32f10x_tim.o [1]
+TIM_OC4PolarityConfig   0x08003639   0x12  Code  Gb  stm32f10x_tim.o [1]
+TIM_OCStructInit        0x08003529   0x22  Code  Gb  stm32f10x_tim.o [1]
+TIM_SelectInputTrigger  0x080035b7   0x10  Code  Gb  stm32f10x_tim.o [1]
+TIM_SetIC1Prescaler     0x0800366b   0x12  Code  Gb  stm32f10x_tim.o [1]
+TIM_SetIC2Prescaler     0x0800367d   0x14  Code  Gb  stm32f10x_tim.o [1]
+TIM_SetIC3Prescaler     0x08003691   0x12  Code  Gb  stm32f10x_tim.o [1]
+TIM_SetIC4Prescaler     0x080036a3   0x14  Code  Gb  stm32f10x_tim.o [1]
+TIM_TimeBaseInit        0x08003205   0x7a  Code  Gb  stm32f10x_tim.o [1]
+TIM_TimeBaseStructInit  0x08003511   0x18  Code  Gb  stm32f10x_tim.o [1]
+USART3_IRQHandler       0x08000bad  0x19a  Code  Gb  stm32f10x_it_stu.o [1]
+USART_ClearITPendingBit
+                        0x08002cb9   0x1e  Code  Gb  stm32f10x_usart.o [1]
+USART_ClockInit         0x08002ba1   0x22  Code  Gb  stm32f10x_usart.o [1]
+USART_ClockStructInit   0x08002bc3   0x12  Code  Gb  stm32f10x_usart.o [1]
+USART_Cmd               0x08002bd5   0x1c  Code  Gb  stm32f10x_usart.o [1]
+USART_GetITStatus       0x08002c55   0x64  Code  Gb  stm32f10x_usart.o [1]
+USART_ITConfig          0x08002bf1   0x52  Code  Gb  stm32f10x_usart.o [1]
+USART_Init              0x08002ae1   0xba  Code  Gb  stm32f10x_usart.o [1]
+USART_ReceiveData       0x08002c4d    0x8  Code  Gb  stm32f10x_usart.o [1]
+USART_SendData          0x08002c43    0xa  Code  Gb  stm32f10x_usart.o [1]
+UsageFault_Handler      0x08000ffd    0x2  Code  Gb  stm32f10x_it_stu.o [1]
+UsartInit               0x080061e9   0xf8  Code  Gb  UartDebug.o [1]
+__aeabi_cdcmpeq         0x08004515         Code  Gb  DblCmpEq.o [4]
+__aeabi_cdcmple         0x08004061         Code  Gb  DblCmpLe.o [4]
+__aeabi_cdrcmple        0x08004091         Code  Gb  DblCmpGe.o [4]
+__aeabi_cfcmple         0x080031e1         Code  Gb  FltCmpLe.o [4]
+__aeabi_cfrcmple        0x080030d5         Code  Gb  FltCmpGe.o [4]
+__aeabi_d2f             0x08002839         Code  Gb  DblToFlt.o [4]
+__aeabi_d2iz            0x080040c1         Code  Gb  DblToI32.o [4]
+__aeabi_dadd            0x080030f9         Code  Gb  DblAdd.o [4]
+__aeabi_ddiv            0x080025dd         Code  Gb  DblDiv.o [4]
+__aeabi_dmul            0x08002439         Code  Gb  DblMul.o [4]
+__aeabi_dsub            0x08003ee1         Code  Gb  DblSub.o [4]
+__aeabi_errno_addr      0x0800410d    0x6  Code  Gb  errno.o [3]
+__aeabi_f2d             0x080023e9         Code  Gb  FltToDbl.o [4]
+__aeabi_f2iz            0x080028c9         Code  Gb  FltToS32.o [4]
+__aeabi_f2uiz           0x080030b1         Code  Gb  FltToU32.o [4]
+__aeabi_fadd            0x08002335         Code  Gb  FltAdd.o [4]
+__aeabi_fdiv            0x08002cd9         Code  Gb  FltDiv.o [4]
+__aeabi_fmul            0x0800225d         Code  Gb  FltMul.o [4]
+__aeabi_fsub            0x08002fc9         Code  Gb  FltSub.o [4]
+__aeabi_i2d             0x080023b9         Code  Gb  I32ToDbl.o [4]
+__aeabi_i2f             0x08002229         Code  Gb  I32ToFlt.o [4]
+__aeabi_ui2d            0x080023cd         Code  Gb  I32ToDbl.o [4]
+__aeabi_ui2f            0x0800223d         Code  Gb  I32ToFlt.o [4]
+__cmain                 0x08006951         Code  Gb  cmain.o [5]
+__exit                  0x08006981   0x14  Code  Gb  exit.o [6]
+__iar_Atan              0x080042b9  0x148  Code  Gb  xatan.o [4]
+__iar_Dint              0x0800449b   0x7a  Code  Gb  xdint.o [4]
+__iar_Dtest             0x08004285   0x32  Code  Gb  xdtest.o [4]
+__iar_Errno             0x20000080    0x4  Data  Gb  errno.o [3]
+__iar_Quad              0x08004119  0x160  Code  Gb  xquad.o [4]
+__iar_Sin               0x080037e1  0x420  Code  Gb  xsin.o [4]
+__iar_copy_init3        0x080068d9   0x2c  Code  Gb  copy_init3.o [5]
+__iar_d2uiz             0x080040ed         Code  Gb  DblToI32.o [4]
+__iar_dadd              0x0800310d         Code  Gb  DblAdd.o [4]
+__iar_data_init3        0x08006905   0x28  Code  Gb  data_init.o [5]
+__iar_dlib_perthread_access
+                        0x08004499    0x2  Code  Gb  xtls.o [3]
+__iar_dsub              0x08003ef5         Code  Gb  DblSub.o [4]
+__iar_dsubStart         0x08003f07         Code  Gb  DblSub.o [4]
+__iar_edom              0x08004279         Code  Gb  iarEdom.o [5]
+__iar_fadd              0x08002345         Code  Gb  FltAdd.o [4]
+__iar_fmod              0x08004535         Code  Gb  fmod.o [4]
+__iar_fmodl             0x08004535         Code  Gb  fmod.o [4]
+__iar_fsub              0x08002fd9         Code  Gb  FltSub.o [4]
+__iar_fsubStart         0x08002fe9         Code  Gb  FltSub.o [4]
+__iar_program_start     0x080069a5         Code  Gb  cstartup_M.o [5]
+__iar_sqrt              0x08003d25         Code  Gb  sqrt.o [4]
+__iar_ui2d              0x080023d1         Code  Gb  I32ToDbl.o [4]
+__iar_ui2f              0x08002241         Code  Gb  I32ToFlt.o [4]
+__iar_zero_init3        0x08006899   0x40  Code  Gb  zero_init3.o [5]
+__low_level_init        0x0800696b    0x4  Code  Gb  low_level_init.o [3]
+__vector_table          0x08000000         Data  Gb  startup_stm32f10x_md_vl.o [1]
+_call_main              0x0800695d         Code  Gb  cmain.o [5]
+_exit                   0x08006975         Code  Gb  cexit.o [5]
+_main                   0x08006967         Code  Gb  cmain.o [5]
+a                       0x08004458   0x40  Data  Lc  xatan.o [4]
+abs                     0x08005cf1    0x8  Code  Gb  abs.o [3]
+abs_Theta               0x20001178    0x4  Data  Gb  variables.o [1]
+abs_X                   0x20001170    0x4  Data  Gb  variables.o [1]
+abs_Y                   0x20001174    0x4  Data  Gb  variables.o [1]
+acc_table               0x08006550  0x190  Data  Gb  acc_table.o [1]
+address                 0x2000113c    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+advanced_segment_stigao
+                        0x20001198    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+angularConstant         0x2000007c    0x4  Data  Gb  variables.o [1]
+angular_Displacement    0x08002f7d   0x40  Code  Gb  continous_movement.o [1]
+apsolutnaPozicija       0x20001080    0xc  Data  Lc  stm32f10x_it_stu.o [1]
+atan2                   0x08003e15   0xcc  Code  Gb  atan2.o [4]
+bad_measurement_end_ch1
+                        0x2000119a    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+bad_measurement_end_ch2
+                        0x2000119c    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+bad_measurement_end_ch3
+                        0x2000119e    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+bad_measurement_end_ch4
+                        0x200011a0    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+brzina                  0x200010c4    0x4  Data  Gb  main_template.o [1]
+brzina_prim             0x20001108    0x4  Data  Lc  stm32f10x_it_stu.o [1]
+byte_count              0x20000028    0x4  Data  Lc  stm32f10x_it_stu.o [1]
+c_counter               0x2000110c    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+calculatePosition       0x08000121  0x140  Code  Gb  stm32f10x_it_stu.o [1]
+checkForObstacle        0x080019b5   0x9c  Code  Gb  stm32f10x_it_stu.o [1]
+checkIfAtDest           0x0800195b   0x4c  Code  Gb  stm32f10x_it_stu.o [1]
+chksum                  0x20001140    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+cnt_90                  0x200010f0    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+command_ID              0x20000088    0x1  Data  Gb  variables.o [1]
+cos                     0x0800290d    0x6  Code  Gb  cos.o [4]
+diff_brzina             0x20001110    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+distance_bl_ch1         0x20001120    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+distance_br_ch2         0x20001128    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+distance_fl_ch4         0x20001138    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+distance_fr_ch3         0x20001130    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+dot_Product             0x08002eb7   0x1e  Code  Gb  continous_movement.o [1]
+err                     0x200010e8    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+err_c                   0x20001114    0x4  Data  Lc  stm32f10x_it_stu.o [1]
+exit                    0x0800696f    0x4  Code  Gb  exit.o [3]
+flag_a                  0x200010e0    0x4  Data  Gb  main_template.o [1]
+flag_c                  0x200010e4    0x4  Data  Gb  main_template.o [1]
+flag_first_step_continous
+                        0x20000010    0x4  Data  Gb  main_template.o [1]
+flag_following_active   0x20001199    0x1  Data  Lc  stm32f10x_it_stu.o [1]
+fmod                    0x08004535         Code  Gb  fmod.o [4]
+fmodl                   0x08004535         Code  Gb  fmod.o [4]
+greska_pracenja_X       0x20001164    0x4  Data  Gb  variables.o [1]
+greska_pracenja_Y       0x20001168    0x4  Data  Gb  variables.o [1]
+i_Cross_Product         0x08002e99   0x1e  Code  Gb  continous_movement.o [1]
+index_ch1               0x2000111c    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+index_ch2               0x20001124    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+index_ch3               0x2000112c    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+index_ch4               0x20001134    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+komanda                 0x20001195    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+main                    0x08005d53  0x2d8  Code  Gb  main_template.o [1]
+maximum_speed_X         0x20000085    0x1  Data  Gb  variables.o [1]
+maximum_speed_Y         0x20000087    0x1  Data  Gb  variables.o [1]
+measured_distance_bl_ch1
+                        0x2000108c    0xc  Data  Gb  stm32f10x_it_stu.o [1]
+measured_distance_br_ch2
+                        0x20001098    0xc  Data  Gb  stm32f10x_it_stu.o [1]
+measured_distance_fl_ch4
+                        0x200010b0    0xc  Data  Gb  stm32f10x_it_stu.o [1]
+measured_distance_fr_ch3
+                        0x200010a4    0xc  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_bl_ch1    0x20001180    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_bl_falling_ch1
+                        0x2000117e    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_bl_rising_ch1
+                        0x2000117c    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_br_ch2    0x20001186    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_br_falling_ch2
+                        0x20001184    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_br_rising_ch2
+                        0x20001182    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_fl_ch4    0x20001192    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_fl_falling_ch4
+                        0x20001190    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_fl_rising_ch4
+                        0x2000118e    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_fr_ch3    0x2000118c    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_fr_falling_ch3
+                        0x2000118a    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+measured_time_fr_rising_ch3
+                        0x20001188    0x2  Data  Gb  stm32f10x_it_stu.o [1]
+message_size            0x20000014    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+motion_type_X           0x20000084    0x1  Data  Gb  variables.o [1]
+motion_type_Y           0x20000086    0x1  Data  Gb  variables.o [1]
+neki_brojac             0x200010f4    0x4  Data  Lc  stm32f10x_it_stu.o [1]
+point_Projection        0x08002f39   0x44  Code  Gb  continous_movement.o [1]
+point_To_Vector         0x08002ef5   0x44  Code  Gb  continous_movement.o [1]
+polyline_length         0x20001104    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+polyline_path           0x20000ee0  0x190  Data  Gb  stm32f10x_it_stu.o [1]
+position_controler_X    0x08005827  0x1e2  Code  Gb  position_controler.o [1]
+position_controler_Y    0x08005a09  0x1f8  Code  Gb  position_controler.o [1]
+position_inc_X          0x2000115c    0x4  Data  Gb  variables.o [1]
+position_inc_Y          0x20001160    0x4  Data  Gb  variables.o [1]
+prethodna_greska1       0x200010c8    0x4  Data  Gb  main_template.o [1]
+prethodna_greska2       0x200010cc    0x4  Data  Gb  main_template.o [1]
+putanja                 0x200008a0  0x320  Data  Gb  main_template.o [1]
+putanja_counter         0x200010dc    0x4  Data  Gb  main_template.o [1]
+received_array          0x20000bc0  0x320  Data  Gb  stm32f10x_it_stu.o [1]
+received_byte           0x200011a6    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+running                 0x20001194    0x1  Data  Gb  main_template.o [1]
+schksum                 0x20001144    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+sending_array           0x20000490  0x410  Data  Lc  stm32f10x_it_stu.o [1]
+sending_iterator        0x200010fc    0x4  Data  Lc  stm32f10x_it_stu.o [1]
+sending_length          0x200010f8    0x4  Data  Lc  stm32f10x_it_stu.o [1]
+sin                     0x08002833    0x6  Code  Gb  sin.o [4]
+speed_correction_Y      0x2000116c    0x4  Data  Gb  variables.o [1]
+speed_current_X         0x200011a7    0x1  Data  Gb  variables.o [1]
+speed_current_Y         0x200011a9    0x1  Data  Gb  variables.o [1]
+speed_req_X             0x200011a8    0x1  Data  Gb  variables.o [1]
+speed_req_Y             0x200011aa    0x1  Data  Gb  variables.o [1]
+speed_table_acc         0x080046dc  0x7d0  Data  Gb  speed_table_acc.o [1]
+speed_table_decc        0x08004eac  0x7d0  Data  Gb  speed_table_decc.o [1]
+sqrt                    0x08003d25         Code  Gb  sqrt.o [4]
+sqrtl                   0x08003d25         Code  Gb  sqrt.o [4]
+state_bl_ch1            0x2000119b    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+state_br_ch2            0x2000119d    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+state_fl_ch4            0x200011a1    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+state_fr_ch3            0x2000119f    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+stigao                  0x20001196    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+stigao1                 0x20001197    0x1  Data  Gb  stm32f10x_it_stu.o [1]
+stopIfObstacle          0x08001a79   0xf4  Code  Gb  stm32f10x_it_stu.o [1]
+task_pid_X              0x20001154    0x4  Data  Gb  variables.o [1]
+task_pid_Y              0x20001158    0x4  Data  Gb  variables.o [1]
+temp                    0x20001070   0x10  Data  Gb  stm32f10x_it_stu.o [1]
+temp_point              0x200010bc    0x8  Data  Gb  stm32f10x_it_stu.o [1]
+trenutna_pozicija_X     0x20000074    0x4  Data  Gb  variables.o [1]
+trenutna_pozicija_Y     0x20000078    0x4  Data  Gb  variables.o [1]
+ulm_length              0x20001100    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+x                       0x200010ec    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+zadata_pozicija_X       0x2000006c    0x4  Data  Gb  variables.o [1]
+zadata_pozicija_Y       0x20000070    0x4  Data  Gb  variables.o [1]
+zapamcena_pozicija_X    0x2000002c    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+zapamcena_pozicija_Y    0x20000030    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+znak                    0x20000018    0x4  Data  Gb  stm32f10x_it_stu.o [1]
+
+
+[1] = C:\Users\Marko\Documents\Baywatchers\Software\Embedded Software\Motion Board\Debug\Obj
+[2] = command line
+[3] = dl7M_tln.a
+[4] = m7M_tl.a
+[5] = rt7M_tl.a
+[6] = shb_l.a
+
+  22 680 bytes of readonly  code memory
+   4 576 bytes of readonly  data memory
+   4 516 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
