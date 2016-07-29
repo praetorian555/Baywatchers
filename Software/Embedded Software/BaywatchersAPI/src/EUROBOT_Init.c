@@ -1,76 +1,100 @@
 /** 
 *   @file     EUROBOT_Init.c
-*   @brief    Definicije funkcija za inicijalizaciju periferija.
-*   @author   Cuvari plaze(Praetorian)
-*   @version  v1.00 (Praetorian)
+*   @brief    Definitions of functions used for easy initialization of STM32F100RB peripherals.
+*   @author   Marko Kostic (archmarko92@gmail.com)
 *   @date     9 June 2016
 */
 
-
+/* Includes ********************************************************************/
 #include "stm32f10x.h"
 #include "stm32f10x_conf.h"
 #include "EUROBOT_Init.h"
 
 /**
-*   @brief  Inicijalizacija zeljenog pina.
-*   @param  GPIOx Port kojem pripada pin koji zelimo da incijalizujemo.
+*   @brief  Initialization of GPIO Pin. 
+*   @param  GPIOx Represents GPIO port to which initialized pin belongs.
 *       @arg GPIOA, GPIOB, GPIOC, GPIOD, GPIOE.
-*   @param  GPIO_Pin Redni broj pina u portu koji zelimo da inicijalizujemo.
+*   @param  GPIO_Pin Number of the initialized pin.
 *       @arg GPIO_Pin_0, GPIO_Pin_1, ..., GPIO_Pin_15.
-*   @param  GPIO_Mode Rezim rada zeljenog pina.
-*       @arg GPIO_Mode_IN_FLOATING  Pin se ponasa kao ulaz a ako nije povezan, pin lebdi.
-*       @arg GPIO_Mode_IPD          Pin se ponasa kao ulaz i vezan je slabim pull-down otpornikom na negativno napajanje.
-*       @arg GPIO_Mode_IPU          Pin se ponasa kao ulaz i vezan je slabim pull-up otpornikom na napajanje.
-*       @arg GPIO_Mode_AIN          Pin se ponasa kao analgni ulaz, sto znaci da se signal direktno sa ulaza vodi dalje u mikrokontroler
-*                                   (nema smestanja u prihvatne registre i slicno). Korisno je sve pinove koje ne koristimo postaviti u 
-*                                   ovo stanje radi ustede energije.
-*       @arg GPIO_Mode_Out_PP       Pin se postavlja kao izlaz ali izlaz iz Output Data Register-a je vezan preko push-pull mreze sa
-*                                   spoljnim svetom, '0' u ODR-u aktivira NMOS tranzistor (izlaz vezan na masu) a '1' aktivira PMOS 
-*                                   tranzistor (izlaz vezan na napajanje).
-*       @arg GPIO_Mode_Out_OD       Pin se ponasa kao izlaz ali izlaz iz Output Data Register-a je vezan preko open-drain mreze sa spoljnim
-*                                   svetom, '0' u ODR-u aktivira NMOS tranzistor (izlaz vezan na masu, a '1' u ODR-u stavlja izlaz u stanje
-*                                   visoke impedanse (PMOS tranzistor se nikad ne aktivira).
-*       @arg GPIO_Mode_AF_PP        Pin se ponasa kao izlaz ali je sada na izlazni bafer vezana neka periferija a ne ODR porta. Ostalo je
-*                                   isto kao i kod GPIO_OUT_PP.
-*       @arg GPIO_Mode_AF_OD        Pin se ponasa kao izlaz ali je sada na izlazni bafer vezana neka periferija a ne ODR porta. Ostalo je 
-*                                   isto kao i kod GPIO_OUT_OD.
-*   @param  GPIO_Speed Definise najvecu brzinu kojom moze da se menja signal na pinu. Slew rate.
+*   @param  GPIO_Mode Desired mode of the pin.
+*       @arg GPIO_Mode_IN_FLOATING  Pin is configured as input. When it's not
+*                                 connected, it floats.
+*       @arg GPIO_Mode_IPD          Pin is configured as input. It's connected
+*                                   to a negative power supply with a weak pull-
+*                                   down ressistor.                                      
+*       @arg GPIO_Mode_IPU          Pin is configured as input. It's connected
+*                                   to a positive power supply with a weak pull-
+*                                   up ressistor.  
+*       @arg GPIO_Mode_AIN          Pin is configured as analog input. This means
+*                                   that a signal is not moving through any logic
+*                                   circuits. This is prefered mode of operation
+*                                   for unused pins, because it has the smallest
+*                                   power consumption.
+*       @arg GPIO_Mode_Out_PP       Pin is configured as output. Output of a Output
+*                                   Data Register is connected through a push-pull
+*                                   network to the rest of a world. Logical zero
+*                                   activates NMOS transistor and connects output 
+*                                   to a negative supply. Logical one activates 
+*                                   PMOS transistor and connects output to a positive
+*                                   supply.
+*       @arg GPIO_Mode_Out_OD       Pin is configured as output. Output of a Output
+*                                   Data Register is connected through a open-drain
+*                                   network to the rest of a world. Logical zero
+*                                   activates NMOS transistor and connects output 
+*                                   to a negative supply. Logical one sets high
+*                                   impedance to the output.
+*       @arg GPIO_Mode_AF_PP        Pin is configured as output. Some peripheral's
+*                                   input/output is connected to a push-pull
+*                                   network instead of a output of a Output Data
+*                                   Register.
+*       @arg GPIO_Mode_AF_OD        Pin is configured as output. Some peripheral's
+*                                   input/output is connected to a open-drain
+*                                   network instead of a output of a Output Data
+*                                   Register.
+*   @param  GPIO_Speed Maximal speed with which output of a pin can change. Basically
+*                      Slew rate.
 *       @arg GPIO_Speed_10MHz, GPIO_Speed_2MHz, GPIO_Speed_50MHz.
-*   @note   Obicno nam je potrebna sto veca brzina pina pa ce za nas default biti GPIO_Speed_50Mhz.
+*   @note   By default we are using GPIO_Speed_50Mhz.
 *
-*   Ova funkcija se koristi za inicijalizaciju bilo kog pina na mikrokontroleru. Obratiti paznju da je potrebno inicijalizovati pin i ako ga 
-*   koristimo u Alternate Function rezimu. Tada se bira jedna od Alternate Function opcija za rezim rada. Alternate Function se koristi kad god
-*   koristimo neku drugu periferiju ciji se koriscen izlaz na mikrokontroleru poklapa sa nekim od pinova portova.
+*   This functon is used for initialization of any pin on a microcontroller. Since
+*   development board has limited number of pins, inputs/outputs of other peripherals
+*   are connected to GPIO pins. If you want to use a some other peripheral you need
+*   to configure both that peripheral and it's output and a GPIO pin to which it is
+*   connected. This is why there is Alternate Function mode (GPIO_Mode_AF_PP, GPIO_
+*   Mode_AF_OD).
 */
-void InitGPIO_Pin( GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef GPIO_Mode, GPIOSpeed_TypeDef GPIO_Speed )
+void InitGPIO_Pin( GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef GPIO_Mode,
+                   GPIOSpeed_TypeDef GPIO_Speed )
 {
-  /* Dovodjenje CLK signala do porta GPIOx. */
+  // Get clock signal to the peripheral. This is essential for a peripheral to work.
   if ( GPIOx == GPIOA )      RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOA, ENABLE );
   else if ( GPIOx == GPIOB ) RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOB, ENABLE );
   else if ( GPIOx == GPIOC ) RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC, ENABLE );
   else if ( GPIOx == GPIOD ) RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOD, ENABLE );
   else if ( GPIOx == GPIOE ) RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOE, ENABLE );
   
-  /* Potrebno ako nam je pin u alternate function rezimu. */
-  if ( GPIO_Mode == GPIO_Mode_AF_PP || GPIO_Mode == GPIO_Mode_AF_OD ) RCC_APB2PeriphClockCmd( RCC_APB2Periph_AFIO, ENABLE );
+  // If we are using Alternate Function mode we need to get clock signal to AFIO.
+  if ( GPIO_Mode == GPIO_Mode_AF_PP || GPIO_Mode == GPIO_Mode_AF_OD )
+          RCC_APB2PeriphClockCmd( RCC_APB2Periph_AFIO, ENABLE );
   
-  /* Inicijalizacija strukture koja sluzi sa konfigurisanje zeljenog pina. */
+  // Create and initialize a structure that represents GPIO Pin with a default 
+  // values.
   GPIO_InitTypeDef GPIO_InitStructure;
   GPIO_StructInit( &GPIO_InitStructure );
   
-  /* Postavljanje rednog broja pina koji se konfigurise. */
+  // Set GPIO pin that will be configured.
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin;
   
-  /* Postavljanje rezima rada pina koji se konfigurise. */
+  // Set the mode of a GPIO pin.
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode;
   
-  /* Postavljanje brzine pina koji se konfigurise. */
+  // Set the change speed of a GPIO pin.
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed;
   
-  /* Konfigurisanje pina. */
+  // Configure GPIO pin.
   GPIO_Init( GPIOx, &GPIO_InitStructure );
 }
-/******************************************************************************************************************************************************/
+/********************************************************************************/
 
 
 /**
